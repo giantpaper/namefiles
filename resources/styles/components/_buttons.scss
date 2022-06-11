@@ -1,0 +1,19 @@
+.button {
+	background: #d41a61;
+	color: white;
+	padding: 0.75rem;
+	border-radius: 3px;
+	font-size: 0.75rem;
+	font-weight: bold;
+	text-transform: uppercase;
+}
+
+button {
+	@extend .button;
+}
+
+form {
+	[type="submit"] {
+		@extend .button;
+	}
+}
