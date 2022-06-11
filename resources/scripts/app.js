@@ -1,3 +1,4 @@
+import jqueryUI from './vendor/jquery-ui';
 import {domReady} from '@roots/sage/client';
 
 /**
