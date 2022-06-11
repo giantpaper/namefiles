@@ -1,0 +1,43 @@
+.name_cards {
+	@apply container;
+	@apply sm:columns-2 md:columns-3 lg:columns-4;
+	padding: 2rem;
+	margin: 0.5rem auto;
+	gap: 1rem;
+	text-align: left;
+}
+
+.name_card.rendered {
+	display: inline-block;
+	width: 100%;
+	position: relative;
+	a {
+		display: block;
+		padding: 1rem;
+		&.name-link {
+			border-radius: 10px;
+			width: 100%;
+			margin: 0.5rem 0;
+			box-shadow: 0 0.5rem 1rem transparentize(#8295c3, 0.75);
+			position: relative;
+		}
+		&.edit-link {
+			font-size: 0.5rem;
+			position: absolute;
+			bottom: 0;
+			right: 0;
+		}
+	}
+	.name_title {
+		@extend .h3;
+		margin: 0;
+	}
+	.name_pronunciation {
+		@apply text-sm;
+		font-style: italic;
+	}
+	.name_meaning {
+		@apply text-sm;
+		margin-top: 0.5rem;
+	}
+}
