@@ -8,6 +8,8 @@ namespace App;
 
 use function Roots\bundle;
 
+error_reporting(E_ALL ^ E_DEPRECATED);
+
 /**
  * Register the theme assets.
  *
