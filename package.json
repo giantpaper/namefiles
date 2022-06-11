@@ -21,6 +21,7 @@
     "@roots/bud": "5.8.7",
     "@roots/bud-sass": "^5.8.7",
     "@roots/bud-tailwindcss": "5.8.7",
-    "@roots/sage": "5.8.7"
+    "@roots/sage": "5.8.7",
+    "@tailwindcss/typography": "^0.5.2"
   }
 }
