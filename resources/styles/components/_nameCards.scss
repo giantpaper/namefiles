@@ -5,10 +5,14 @@
 	margin: 0.5rem auto;
 	gap: 1rem;
 	text-align: left;
+	> li {
+		display: inline-block;
+		-webkit-display: block;
+		width: 100%;
+	}
 }
 
 .name_card.rendered {
-	display: inline-block;
 	width: 100%;
 	position: relative;
 	a {
