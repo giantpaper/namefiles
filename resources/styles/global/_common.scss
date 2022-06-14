@@ -132,7 +132,7 @@ button#filter_btn {
 		// overflow-y: auto;
 		fieldset {
 			font-size: 0.8em;
-			&:first-child {
+			&#origin {
 				@apply xl:col-span-3 lg:row-span-2;
 				column-count: 3;
 			}
