@@ -3,5 +3,18 @@
 @import 'tailwindcss/utilities';
 
 
+$darkgray: #222222;
+
+@import 'global/include';
 @import 'global/common';
+@import 'global/text';
 @import 'vendor/jquery-ui';
+@import 'components/forms';
+@import 'components/buttons';
+@import 'components/nameCards';
+@import 'components/refineGraph';
+@import 'partials/header';
+@import 'partials/footer';
+
+@import "pages/home";
+@import "pages/singleName";
