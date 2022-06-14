@@ -45,3 +45,11 @@
 		margin-top: 0.5rem;
 	}
 }
+
+body:not(.logged-in) {
+	.name_card.rendered {
+		.edit-link {
+			display: none;
+		}
+	}
+}
