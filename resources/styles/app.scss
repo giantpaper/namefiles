@@ -2,13 +2,14 @@
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
 
-
+$maroon: #9b2e40;
 $darkgray: #222222;
 
 @import 'global/include';
 @import 'global/common';
 @import 'global/text';
 @import 'vendor/jquery-ui';
+@import 'components/accordion';
 @import 'components/forms';
 @import 'components/buttons';
 @import 'components/nameCards';

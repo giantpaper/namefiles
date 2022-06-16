@@ -117,11 +117,11 @@ if ( !is_admin() ) {
 
 			$contents = '<div class="accordion-item">';
 
-			$contents .= '<h2 class="accordion-header" id="' . $id_title . '">
-				<button class="accordion-button btn btn-primary" type="button" data-toggle="collapse" data-target="#' . $id_body . '" aria-expanded="true" aria-controls="' . $id_title . '">' .$title. '</button>
+			$contents .= '<h2 class="h0 accordion-header" id="' . $id_title . '">
+				<button class="text-primary accordion-button btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#' . $id_body . '" aria-expanded="true" aria-controls="' . $id_title . '">' .$title. '</button>
 			</h2>';
 
-			$contents .= '<div id="' . $id_body . '" class="accordion-collapse collapse ' .$active. '" aria-labelledby="' . $id_title . '" data-parent="#' .$this->id. '">
+			$contents .= '<div id="' . $id_body . '" class="accordion-collapse collapse ' .$active. '" aria-labelledby="' . $id_title . '" data-bs-parent="#' .$this->id. '">
 			<div class="accordion-body">';
 			$contents .= $this->get_output($func);
 

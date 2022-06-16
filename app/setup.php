@@ -238,5 +238,30 @@ add_action('template_redirect', function (){
 		exit();
 	}
 });
+/* --------------
+ * ACF Options
+ * --------------
+ */
+if( function_exists('acf_add_options_page') ) {
+
+	acf_add_options_page([
+		'page_title' 	=> 'Site Settings',
+		'menu_title'	=> 'Site Settings',
+		'menu_slug' 	=> 'tnf_settings',
+		'capability'	=> 'edit_posts',
+		'redirect'		=> false,
+		'icon_url'		=> 'dashicons-admin-tools',
+	]);
+
+	acf_add_options_page([
+		'page_title' 	=> 'Graph FAQs',
+		'menu_title'	=> 'Graph FAQs',
+		'menu_slug' 	=> 'tnf_graph_faqs',
+		'capability'	=> 'edit_posts',
+		'redirect'		=> false,
+		'parent_slug'	=> 'tnf_settings',
+	]);
+
+}
 
 include 'tnf_functions.php';

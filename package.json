@@ -22,7 +22,8 @@
     "@roots/bud-sass": "^5.8.7",
     "@roots/bud-tailwindcss": "5.8.7",
     "@roots/sage": "5.8.7",
-    "@tailwindcss/typography": "^0.5.2"
+    "@tailwindcss/typography": "^0.5.2",
+    "tw-elements": "^1.0.0-alpha12"
   },
   "dependencies": {
     "chart.js": "^3.8.0",
