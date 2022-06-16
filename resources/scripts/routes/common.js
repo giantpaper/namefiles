@@ -17,6 +17,15 @@ export default {
 			// adjust main#main padding-bottom
 			nameCards($);
 
+			if (window.is_touch_enabled()) {
+				$('.no-touch').hide();
+				$('.is-touch').show();
+			}
+			else {
+				$('.no-touch').show();
+				$('.is-touch').hide();
+			}
+
 			$.fn.outerHTML = function(s) {
 				return s ? this.before(s).remove() : $("<p>").append(this.eq(0).clone()).html();
 			};

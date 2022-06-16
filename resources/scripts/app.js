@@ -1,7 +1,4 @@
 import jQuery from 'jquery';
-import jqueryUI from './vendor/jquery-ui';
-
-// import getWrunner from './load/wrunner-jquery';
 
 import {domReady} from '@roots/sage/client';
 
@@ -12,7 +9,7 @@ import Router from './util/Router';
 //
 import common from './routes/common';
 import home from './routes/home';
-// import showGraph from './routes/showGraph';
+import showGraph from './routes/showGraph';
 
 window.is_touch_enabled = () => {
 	return ( 'ontouchstart' in window ) ||
@@ -34,7 +31,7 @@ window.is_touch_enabled = () => {
 			common,
 			// Home page
 			home,
-			// showGraph,
+			showGraph,
 		});
 
 		// Load Events

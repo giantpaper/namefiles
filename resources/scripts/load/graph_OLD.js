@@ -7,7 +7,7 @@ class Graph {
 	constructor(ctx) {
 		if ( !ctx )
 			return false;
-		
+
 		this.myLine = new Chart(ctx, config.CTX);
 	}
 	changeTitle (startYear, endYear, name, country) {
@@ -25,12 +25,12 @@ class Graph {
 			f: [],
 			m: [],
 		};
-	
+
 		// get earliest year and peak year
 		Object.keys(years).forEach(yearLabel => {
 			let year = yearLabel.replace('YEAR_', '');
 			let genders = years[yearLabel];
-	
+
 			if (config.earliest.f === undefined && genders.female !== undefined) {
 				config.earliest.f = {
 					year: year,
@@ -43,7 +43,7 @@ class Graph {
 					num: genders.male,
 				};
 			}
-	
+
 			if ((config.peak.f === undefined && genders.female !== undefined) || (config.peak.f && config.peak.f.num < genders.female)) {
 				config.peak.f = {
 					year: year,
@@ -56,17 +56,17 @@ class Graph {
 					num: genders.male,
 				}
 			}
-	
+
 			if ( startYear <= year && year <= endYear ) {
 				data.labels.push( year );	// Add year labels
-	
+
 				d.f.push(genders.female);	// female names
 				d.m.push(genders.male);	// male names
 			}
 		});
 		data.gender.f.data = d.f;
 		data.gender.m.data = d.m;
-	
+
 		return {
 			data: data,
 			misc: {
@@ -80,15 +80,15 @@ class Graph {
 		let data = raw.data;
 		let byGender = data.gender;
 		config.data.datasets = [];
-	
+
 		let misc = raw.misc;
-	
+
 		console.log(config.CTX.options.title.text);
-	
+
 		$('#stats')
 			.removeClass('loading')
 			.find('.loader').hide();
-	
+
 		// fill in stats
 		if ( misc.earliest.f !== undefined && misc.earliest.f.num > 0 ) {
 			$('[data-id="earliest-f-num"]').text(misc.earliest.f.num);
@@ -104,7 +104,7 @@ class Graph {
 		else {
 			$('[data-id="earliest-m-num"],[data-id="earliest-m-year"]').parent().hide();
 		}
-	
+
 		if ( misc.peak.f !== undefined ) {
 			$('[data-id="peak-f-num"]').text(misc.peak.f.num);
 			$('[data-id="peak-f-year"]').text(misc.peak.f.year);
@@ -120,16 +120,16 @@ class Graph {
 			$('[data-id="peak-m-num"],[data-id="peak-m-year"]').parent().hide();
 		}
 		// end stats
-	
+
 		Object.keys( byGender ).forEach(k => {
 			// let array = $.extend(data.gender[k], config.datasets[k]);
-	
+
 			console.log('test', k);
 			config.CTX.data.datasets[k].data = byGender[k];
 			// myLine.data.datasets.push(config.data.datasets[k]);
 			config.CTX.options.title.text = changeTitle(startYear, endYear, name, config.countries[country]);
 		});
-	
+
 		console.log('test', raw);
 		config.data.labels = data.labels;
 		myLine.update();

@@ -9,7 +9,7 @@ body.single-name {
 		text-align: center;
 	}
 	.name-meaning {
-		background: #9b2e40;
+		background: $maroon;
 		color: white;
 		padding: 1rem 0;
 		text-align: center;
@@ -43,10 +43,6 @@ body.single-name {
 	#graph-wrapper {
 		@apply px-4 md:px-8;
 		@apply flex items-center justify-center;
-		position: relative;
-		canvas#graph {
-			max-width: 100% !important;
-		}
 		.loader {
 			@apply flex items-center justify-center;
 			position: absolute;
