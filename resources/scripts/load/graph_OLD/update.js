@@ -12,8 +12,6 @@ export default function update (years, startYear, endYear, country) {
 
 	let misc = raw.misc;
 
-	console.log(config.CTX.options.title.text);
-
 	$('#stats')
 		.removeClass('loading')
 		.find('.loader').hide();
@@ -59,7 +57,6 @@ export default function update (years, startYear, endYear, country) {
 		config.CTX.options.title.text = changeTitle(startYear, endYear, name, config.countries[country]);
 	});
 
-	console.log('test', raw);
 	config.data.labels = data.labels;
 	myLine.update();
 };

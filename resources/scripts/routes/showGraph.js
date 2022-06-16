@@ -1,74 +1,68 @@
-import { Chart, ChartConfiguration, LineController, LineElement, PointElement, LinearScale, Title, CategoryScale } from 'chart.js';
+import jQuery from 'jquery';
+import Graph from '../load/graph/main';
+import 'tw-elements';
 
-import getData from '../load/graph/getData';
-import update from '../load/graph/update';
-import changeTitle from '../load/graph/changeTitle';
-
-import Graph from '../load/graph';
-
-Chart.register(LineController, LineElement, PointElement, LinearScale, Title, CategoryScale);
+import { slider } from 'jquery-ui-bundle';
 
 export default {
 	init() {
 		// JavaScript to be fired on the home page
 	},
 	finalize() {
-    // JavaScript to be fired on the home page, after the init JS
+		// JavaScript to be fired on the home page, after the init JS
 		(function($){
 			if (!TNF.nameData) {
 				return false;
 			}
 
-			let country = 'us';
+			var graph = new Graph('graph');
 
-			const post = TNF.post;
-			let slug = post.info.slug;
+			graph.getData({
+				start: $('#mobileMinYear').val(),
+				end: $('#mobileMaxYear').val(),
+			}, function(thisGraph){
+				$('[data-year="start"]').text(thisGraph.firstYear);
+				$('[data-year="end"]').text(thisGraph.lastYear);
 
-			const $range = $('.range-wrap');
+				$('#mobileMinYear').val(thisGraph.firstYear).attr('min', thisGraph.firstYear).attr('max', thisGraph.lastYear);
+				$('#mobileMaxYear').val(thisGraph.lastYear).attr('min', thisGraph.firstYear).attr('max', thisGraph.lastYear);
 
-			const lastYear = $range.parent().find('[data-year="end"]').text();
-			const min = $range.parent().find('[data-year="start"]').text();
-			const max = lastYear;
-			const defaultMinYear = lastYear - config.timespan;
-			let startYear = defaultMinYear;
-			let endYear = lastYear;
+				$range.slider({
+					range: true,
+					min: Number(parseInt( thisGraph.firstYear )),
+					max: Number(parseInt( thisGraph.lastYear )),
+					values: [ $range.attr('data-min'), $range.attr('data-max') ],
+					change: function( event, ui ) {
+						let start = ui.values[0];
+						let end = ui.values[1];
+						$('#refineGraph h4 span').text(` — From ${start} to ${end}`);
+						// ui = {
+						// 	values: []	-- 2 values
+						// }
+						graph.getData({
+							start: start,
+							end: end,
+						});
+						// $( "#amount" ).val( "$" + ui.values[ 0 ] + " - $" + ui.values[ 1 ] );
+					}
+				});
+			});
 
-			let mobileValues = {};
+			$('.graph-is-loaded').removeClass('hidden');
 
-			// http://localhost/~giantpaper/~namesdata/json.php?slug=anna&country=us
+			$('#stats')
+				.removeClass('loading')
+				.find('.loader').hide();
 
-			const file = TNF.urls.graph + '/' + TNF.endpoints.stats + '&country=' + country + '&slug=' + slug;
+			let $range = $( ".range-wrap" );
 
-			// Chart.defaults.TNF.defaultFontColor = "#2E0E02";
-
-			const $graphControl = $('.graph-controls:not(:hidden)');
-
-
-			var graph = new Graph;
-
-			let config = graph.config;
-
-// 			$.get(file, function(json){
-// 				if ( json.length <= 0 ) {
-// 					$('#stats').removeClass('loading').addClass('empty');
-// 					return false;
-// 				}
-// 				let labels = [];
-//
-// 				Object.keys(json).forEach(name => {
-// 					if ( name === 'info')
-// 						return false;
-//
-// 					const years = json[name];
-// 					config.CTX.options.title.text = graph.changeTitle(startYear, endYear, name, config.countries[country]);
-//
-// 					console.log(config.CTX.options.title.text);
-// 					update(years, startYear, endYear, country);
-//
-// 					$('.graph-is-loaded').removeClass('hidden');
-// 				});
-// 			});
+			$('#mobileMinYear, #mobileMaxYear').on('change', function(){
+				graph.getData({
+					start: $('#mobileMinYear').val(),
+					end: $('#mobileMaxYear').val(),
+				});
+			});
 
 		})(jQuery);
-	},
-};
+	}
+}

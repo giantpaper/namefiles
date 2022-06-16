@@ -1,0 +1,33 @@
+.ui {
+	&-state {
+		&-focus {
+			box-shadow: 0 0.25rem 0.5rem currentcolor;
+		}
+	}
+	&-slider {
+		background: #ccc;
+		color: $maroon;
+		border-radius: 100px;
+		$thickness: 0.5rem;
+		&-handle {
+			background: currentcolor;
+			transition: box-shadow 0.3s;
+			border-radius: 0.25rem;
+		}
+		&-range {
+			background: currentcolor;
+			border-radius: inherit;
+		}
+		&-horizontal {
+			height: $thickness;
+			width: 100%;
+			.ui-slider-handle {
+				top: -0.4em;
+			}
+		}
+		&-vertical {
+			width: $thickness;
+			height: 100%;
+		}
+	}
+}

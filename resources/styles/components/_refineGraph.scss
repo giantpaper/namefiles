@@ -1,95 +1,28 @@
 
 #refineGraph {
+	.inner {
+		display: flex;
+		align-items: center;
+		gap: 1em;
+		height: 2em;
+	}
 	.sublabel {
 		font-size: text(14);
 		font-weight: bold;
-		margin-top: 1.35em;
-	}
-	.range-wrap {
-		flex: 1;
-		padding: 0 0.25rem;
-	}
-	.range-wrap-outer {
-		color: $primary;
-		display: flex;
-		align-items: center;
-	}
-	.wrunner {
-		&__handle {
-			background: white;
-			box-shadow: 0 0.2rem 0.5rem transparentize(black, 0.875);
-			border-radius: 100px;
-			&:hover,
-			&:active {
-				background: white;
-			}
-		}
-		&__pathPassed {
-			background: $primary;
-		}
-		&__valueNote {
-			background: lighten(black, 10%);
-			box-shadow: 0 0.2rem 0.5rem transparentize(black, 0.5);
-			color: white;
-			border-radius: 0.2rem;
-			font-family: inherit;
-			//padding: 0.125rem;
-			text-align: center;
-			margin: -0.5000em 0 0 0.1000em;
-			line-height: 1.5em;
-			&:after {
-				box-shadow: inherit;
-				background: inherit;
-				border: none;
-				display: block;
-				clip-path: polygon(0 0, 100% 0, 50% 100%);
-				content: "";
-				position: absolute;
-				top: 100%;
-				left: 50%;
-				height: 0.5rem;
-				width: 1rem;
-				transform: translateX(-0.25rem);
-			}
-		}
+		display: block;
 	}
 	h3 {
 		display: flex;
 		align-items: center;
 	}
+
 	.graph-controls {
-		display: inline-flex;
-		border-radius: 10px;
-		background: white;
-		&:before {
-			height: 100%;
-			width: 3px;
-			content: '';
-			display: block;
-			background: white;
-			order: 1;
-		}
-		input {
-			&[type="number"] {
-				@extend .h3;
-				background: map-get($theme-colors, tertiary);
-				margin-bottom: 0;
-				appearance: none;
-				border: none;
-				display: block;
-				width: 3em;
-				padding: 1rem;
-				box-sizing: content-box;
-				text-align: center;
-				&#mobileMaxYear {
-					order: 2;
-				}
-				&:focus {
-					background: $primary;
-					outline: none;
-					color: white;
-				}
-			}
+		display: flex;
+		gap: 0.25rem;
+		> * {
+			width: 50%;
+			background: #eee;
+			padding: 0.5rem;
 		}
 	}
 }
