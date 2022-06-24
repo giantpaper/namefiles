@@ -228,5 +228,3 @@ if ( !is_admin() ) {
 	add_filter('the_content', 'source_links', 20);
 
 }
-
-?>
