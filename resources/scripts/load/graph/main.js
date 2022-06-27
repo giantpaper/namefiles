@@ -133,7 +133,7 @@ export default class Graph {
 					});
 				});
 
-				let yearList = config.CTX.data.labels;
+				let yearList = Object.keys(list);
 				this.firstYear = yearList[0];
 				this.lastYear = yearList[yearList.length - 1];
 
