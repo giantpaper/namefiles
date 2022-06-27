@@ -13,7 +13,7 @@ const changeSubtitle = function(startYear, endYear, name, country) {
 
 export default class Graph {
 	constructor(ctx) {
-		if ( !ctx )
+		if ( !ctx || document.getElementById(ctx) === null )
 			return false;
 
 		let graph = document.getElementById(ctx).getContext('2d');
@@ -33,7 +33,6 @@ export default class Graph {
 				$('#stats').removeClass('loading').addClass('empty');
 				return false;
 			}
-
 			let $range = config.rangeElement;
 			const lastYear = $range.parent().find('[data-year="end"]').text();
 			const min = $range.parent().find('[data-year="start"]').text();
