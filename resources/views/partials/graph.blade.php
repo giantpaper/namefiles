@@ -31,6 +31,7 @@
 
 			<button type="button" class="h4
 			mt-5
+			mx-auto
 			px-6
 			py-2.5
 			bg-secondary
@@ -51,8 +52,8 @@
 
 		</form>
 
-			<div class="col-span-2 lg:col-span-3 grid md:grid-cols-2 p-8 md:grid-8 md:p-0">
 		<section id="trivia">
+			<div class="col-span-2 mx-auto lg:col-span-3 grid md:grid-cols-2 p-8 md:grid-8 md:p-0">
 				<div>
 					<h4>Earliest Records:</h4>
 					<dl class="trivia">
