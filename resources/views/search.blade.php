@@ -1,3 +1,7 @@
+@php
+	$s = get_query_var('s');
+	$by_name = get_name_by_title($s);
+@endphp
 @extends('layouts.app')
 
 @section('content')
