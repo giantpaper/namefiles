@@ -136,6 +136,7 @@ export default class Graph {
 				let yearList = Object.keys(list);
 				this.firstYear = yearList[0];
 				this.lastYear = yearList[yearList.length - 1];
+				this.startYear = startYear;
 
 				config.CTX.options.plugins.title.text = changeTitle(startYear, endYear, name, config.country);
 				config.CTX.options.plugins.subtitle.text = changeSubtitle(startYear, endYear, name, config.country);
