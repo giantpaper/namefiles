@@ -20,7 +20,10 @@
 		<div class="inner">
 		@foreach ($list as $name)
 			@php
-				$terms = get_terms($name);
+				$args = [];
+				if (WP_HOME == 'http://names.test')
+					$args['hide_empty'] = false;
+				$terms = get_terms($name, $args);
 				$tax = get_taxonomy($name);
 			@endphp
 			<fieldset id="{!! $tax->name !!}">
