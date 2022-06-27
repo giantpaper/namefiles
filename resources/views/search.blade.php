@@ -15,9 +15,19 @@
 		</div>
   @endif
 
-  @while(have_posts()) @php(the_post())
-    @include('partials.content-search')
-  @endwhile
-
-  {!! get_the_posts_navigation() !!}
+	<ul class="name_cards">
+  	@while(have_posts()) @php(the_post())
+    	@include('partials.content-search')
+  	@endwhile
+	</ul>
+	@if (App\have_name_data())
+		<div id="stats">
+			@if (!$by_name)
+				<h2>Name Trends for {{ ucwords($s)}} </h2>
+				@include ('partials.graph')
+			@endif
+		</div>
+	@endif
 @endsection
+
+
