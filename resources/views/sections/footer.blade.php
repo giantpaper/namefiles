@@ -16,11 +16,6 @@
 
 <div id="filter_menu_wrapper">
 	<form id="filter_menu" class="hide">
-		<div class="by_name" style="display: none">
-			<label for="s">Search</label>
-			<input type="search" id="s" name="s" value="" />
-			<button><i class="fa-solid fa-magnifying-glass"></i></button>
-		</div>
 		<div class="inner">
 		@foreach ($list as $name)
 			@php
