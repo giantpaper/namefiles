@@ -1,6 +1,6 @@
 .name_cards {
 	@apply container;
-	@apply sm:columns-2 md:columns-3 lg:columns-4;
+	column-width: 14em;
 	padding: 2rem;
 	margin: 0.5rem auto;
 	gap: 1rem;
