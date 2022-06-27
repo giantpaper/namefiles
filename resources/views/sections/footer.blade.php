@@ -1,6 +1,7 @@
 @php
-	$use_radio = ['nametype'];
 	$list = ['origin', 'firstinitial', 'gender', 'nametype', ];
+	// $use_radio = ['nametype'];
+	$use_radio = [];
 
 	$newest = new WP_Query([
 		'posts_per_page' => 1,
