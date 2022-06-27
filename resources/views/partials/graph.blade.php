@@ -51,8 +51,8 @@
 
 		</form>
 
-		<section id="trivia" class="grid md:grid-cols-4 lg:grid-cols-5 gap-8">
 			<div class="col-span-2 lg:col-span-3 grid md:grid-cols-2 p-8 md:grid-8 md:p-0">
+		<section id="trivia">
 				<div>
 					<h4>Earliest Records:</h4>
 					<dl class="trivia">
