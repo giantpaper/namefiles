@@ -53,11 +53,29 @@ export default class Graph {
 
 				let list = json[name];
 				let dataset = {};
+				let i = {};
 
 				config.CTX.data.labels = [];
 				config.CTX.data.datasets = [];
 
 				Object.keys(list).forEach(year => {
+					let byGender = list[year];
+					Object.keys(byGender).forEach(gender => {
+						let stat = byGender[gender];
+						if (i[gender] === undefined) {
+							i[gender] = 0;
+						}
+						if (byGender[gender] === undefined) {
+							stat = 0;
+						}
+						// - Earliest occurrance
+						if (i[gender] === 0 && stat > 0) {
+							$(`[data-id="earliest-${gender}-year"]`).text(year);
+							$(`[data-id="earliest-${gender}-num"]`).text(parseInt(stat).toLocaleString('en'));
+							i[gender]++;
+							return false;
+						}
+					});
 
 					if ( startYear <= year && year <= endYear ) {
 						let byGender = list[year];
@@ -73,12 +91,6 @@ export default class Graph {
 								dataset[gender] = [];
 							}
 							dataset[gender].push(stat);
-							// Fill in stats
-							// - Earliest occurrance
-							if ($(`[data-id="earliest-${gender}-num"]`).text() === '' && stat > 0) {
-								$(`[data-id="earliest-${gender}-year"]`).text(year);
-								$(`[data-id="earliest-${gender}-num"]`).text(parseInt(stat).toLocaleString('en'));
-							}
 							// - Peak years
 							// 	 - for males
 							if (peakYears.years[gender] === undefined) {
