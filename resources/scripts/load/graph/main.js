@@ -141,7 +141,9 @@ export default class Graph {
 				config.CTX.options.plugins.subtitle.text = changeSubtitle(startYear, endYear, name, config.country);
 			});
 
-			graph.update();
+			if (graph !== undefined) {
+				graph.update();
+			}
 
 			$('.graph-is-loaded').removeClass('hidden');
 
