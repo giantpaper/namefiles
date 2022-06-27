@@ -41,6 +41,7 @@ add_action('wp_enqueue_scripts', function () {
 			'graph' => DATA_URL,
 			'edit' => is_user_logged_in() ? '/wp/wp-admin/post.php?post=%s&action=edit' : null,
 		],
+		'isLoggedin' => is_user_logged_in(),
 	];
 
 	$term_list = [];
