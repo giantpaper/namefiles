@@ -4,6 +4,8 @@ import filterForm from '../load/filterForm';
 
 import nameCards from '../load/nameCards';
 
+import miscFunctions from '../load/misc';
+
 /*global TNF;*/
 
 export default {
@@ -18,6 +20,7 @@ export default {
 		(function($){
 			// adjust main#main padding-bottom
 			nameCards($);
+			miscFunctions($);
 
 			if (window.is_touch_enabled()) {
 				$('.no-touch').hide();
@@ -27,10 +30,6 @@ export default {
 				$('.no-touch').show();
 				$('.is-touch').hide();
 			}
-
-			$.fn.outerHTML = function(s) {
-				return s ? this.before(s).remove() : $("<p>").append(this.eq(0).clone()).html();
-			};
 
 			let getCheckboxValues = function(){
 				let $input = $(this);
