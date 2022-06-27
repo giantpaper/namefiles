@@ -17,36 +17,46 @@ export default {
 
 			var graph = new Graph('graph');
 
-			graph.getData({
-				start: $('#mobileMinYear').val(),
-				end: $('#mobileMaxYear').val(),
-			}, function(thisGraph){
-				$('[data-year="start"]').text(thisGraph.firstYear);
-				$('[data-year="end"]').text(thisGraph.lastYear);
+			if (graph !== undefined) {
+				graph.getData({
+					start: $('#mobileMinYear').val(),
+					end: $('#mobileMaxYear').val(),
+				}, function(thisGraph){
+					$('[data-year="start"]').text( thisGraph.firstYear );
+					$('[data-year="end"]').text( thisGraph.lastYear );
 
-				$('#mobileMinYear').val(thisGraph.firstYear).attr('min', thisGraph.firstYear).attr('max', thisGraph.lastYear);
-				$('#mobileMaxYear').val(thisGraph.lastYear).attr('min', thisGraph.firstYear).attr('max', thisGraph.lastYear);
+					$range.slider({
+						range: true,
+						min: Number(parseInt( thisGraph.firstYear )),
+						max: Number(parseInt( thisGraph.lastYear )),
+						values: [ thisGraph.startYear, thisGraph.lastYear ],
+						create: function( event, ui ) {
+							let start = $('#mobileMinYear').val();
+							let end = $('#mobileMaxYear').val();
+							$('#refineGraph h4 span').text(` — From ${start} to ${end}`);
+						},
+						slide: function( event, ui ) {
+							let start = ui.values[0];
+							let end = ui.values[1];
+							$('#refineGraph h4 span').text(` — From ${start} to ${end}`);
+						},
+						change: function( event, ui ) {
+							let start = ui.values[0];
+							let end = ui.values[1];
+							// ui = {
+							// 	values: []	-- 2 values
+							// }
+							$('#stats').addClass('loading');
+							graph.getData({
+								start: start,
+								end: end,
+							});
+							// $( "#amount" ).val( "$" + ui.values[ 0 ] + " - $" + ui.values[ 1 ] );
+						},
+					});
 
-				$range.slider({
-					range: true,
-					min: Number(parseInt( thisGraph.firstYear )),
-					max: Number(parseInt( thisGraph.lastYear )),
-					values: [ $range.attr('data-min'), $range.attr('data-max') ],
-					change: function( event, ui ) {
-						let start = ui.values[0];
-						let end = ui.values[1];
-						$('#refineGraph h4 span').text(` — From ${start} to ${end}`);
-						// ui = {
-						// 	values: []	-- 2 values
-						// }
-						graph.getData({
-							start: start,
-							end: end,
-						});
-						// $( "#amount" ).val( "$" + ui.values[ 0 ] + " - $" + ui.values[ 1 ] );
-					}
 				});
-			});
+			}
 
 			$('.graph-is-loaded').removeClass('hidden');
 
