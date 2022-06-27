@@ -1,9 +1,7 @@
 import jQuery from 'jquery';
 
 import filterForm from '../load/filterForm';
-
 import nameCards from '../load/nameCards';
-
 import miscFunctions from '../load/misc';
 
 /*global TNF;*/

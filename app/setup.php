@@ -73,7 +73,6 @@ add_action('wp_enqueue_scripts', function () {
 
 	wp_localize_script('app/1', 'TNF', $localize);
 
-
 	add_filter('script_loader_tag', function ($src, $handle) {
 		$new_attr = null;
 		switch ($handle) {
@@ -108,6 +107,19 @@ add_action('wp_enqueue_scripts', function () {
 	});
 
 }, 100);
+
+remove_action( 'wp_head', 'print_emoji_detection_script', 7 );
+remove_action( 'wp_print_styles', 'print_emoji_styles');
+remove_action( 'admin_print_scripts', 'print_emoji_detection_script' );
+remove_action( 'option_active_plugins', function() {
+	wp_deregister_style( 'wordfenceAJAXcss' );
+} );
+// remove from front end
+add_action( 'wp_print_styles', function () {
+	wp_deregister_style( 'wp-block-library' );
+	wp_dequeue_style( 'wp-block-library' );
+	wp_dequeue_style( 'wp-block-library-theme' );
+}, 100 );
 
 add_action( 'wp_default_scripts', function( $scripts ) {
 	if ( !is_admin() && isset( $scripts->registered['jquery'] ) ) {
