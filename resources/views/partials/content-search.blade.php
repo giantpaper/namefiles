@@ -1,15 +1,8 @@
-<article @php(post_class())>
-  <header>
-    <h2 class="entry-title">
-      <a href="{{ get_permalink() }}">
-        {!! $title !!}
-      </a>
-    </h2>
-
-    @includeWhen(get_post_type() === 'post', 'partials.entry-meta')
-  </header>
-
-  <div class="entry-summary">
-    @php(the_excerpt())
-  </div>
-</article>
+<a href="{{ get_permalink() }}" class="name_card"
+	data-gender="{{ get_the_terms($post->ID, 'gender')[0]->term_id }}"
+	data-meaning="{{ get_field('meaning') }}"
+	data-pronunciation="{{ get_field('pronunciation') }}"
+	data-edit="{{ get_edit_post_link($post->ID) }}"
+	>
+	{!! $title !!}
+</a>
