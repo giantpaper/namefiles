@@ -38,8 +38,8 @@ add_action('wp_enqueue_scripts', function () {
 	$localize = [
 		'urls' => [
 			'home' => get_home_url(),
-			'edit' => '/wp/wp-admin/post.php?post=%s&action=edit',
 			'graph' => DATA_URL,
+			'edit' => is_user_logged_in() ? '/wp/wp-admin/post.php?post=%s&action=edit' : null,
 		],
 	];
 
