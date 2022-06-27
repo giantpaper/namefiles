@@ -19,8 +19,6 @@ error_reporting(E_ALL ^ E_DEPRECATED);
 define('JQUERY_FILE', 'https://code.jquery.com/jquery-3.6.0.min.js');
 define('JQUERY_HASH', 'sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=');
 
-define('CFG__REMOTE_DATA', WP_ENV == 'development' ? 'http://localhost/~giantpaper/~namesdata' : 'https://data.namefiles.co');
-
 add_action('wp_enqueue_scripts', function () {
 	global $post, $wp, $wp_query;
 
@@ -35,13 +33,13 @@ add_action('wp_enqueue_scripts', function () {
 
 	define('NAME_TITLE', $wp_query->is_singular( 'name' ) ? str_replace('-2', '', $post->post_name) : get_query_var('s') );
 	// define('SHOW_GRAPH', false);
-	define('SHOW_GRAPH', ( $wp_query->is_singular('name') || $wp_query->is_search() ) && json_decode(file_get_contents(CFG__REMOTE_DATA . '/json.php?mode=stats&country=us&which=by_name&slug=' . NAME_TITLE)) != null );
+	define('SHOW_GRAPH', ( $wp_query->is_singular('name') || $wp_query->is_search() ) && json_decode(file_get_contents( DATA_URL . '/json.php?mode=stats&country=us&which=by_name&slug=' . NAME_TITLE)) != null );
 
 	$localize = [
 		'urls' => [
 			'home' => get_home_url(),
-			'graph' => CFG__REMOTE_DATA,
 			'edit' => '/wp/wp-admin/post.php?post=%s&action=edit',
+			'graph' => DATA_URL,
 		],
 	];
 
@@ -61,7 +59,7 @@ add_action('wp_enqueue_scripts', function () {
 
 	if (SHOW_GRAPH) {
 		function have_name_data() {
-			$json = json_decode(file_get_contents(CFG__REMOTE_DATA.CFG__REMOTE_JSON_FILE . '&country=' .CFG__COUNTRY. '&slug=' . NAME_TITLE), true);
+			$json = json_decode(file_get_contents(DATA_URL.CFG__REMOTE_JSON_FILE . '&country=' .CFG__COUNTRY. '&slug=' . NAME_TITLE), true);
 
 			return !empty(array_pop($json));
 		}
