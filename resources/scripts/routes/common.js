@@ -19,8 +19,11 @@ export default {
     // JavaScript to be fired on all pages, after page specific JS is fired
 		(function($){
 			// adjust main#main padding-bottom
+			filterForm($);
 			nameCards($);
 			miscFunctions($);
+
+			$('a.name_card').nameCard();
 
 			if (window.is_touch_enabled()) {
 				$('.no-touch').hide();
