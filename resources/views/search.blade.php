@@ -8,7 +8,7 @@
   @include('partials.page-header')
 
   @if (! have_posts())
-		<div class="container">
+		<div class="container px-8">
     	<x-alert type="warning" class="p-4 mt-8 rounded-lg">
       	{!! __('Sorry, no results were found in our database.', 'sage') !!}
     	</x-alert>

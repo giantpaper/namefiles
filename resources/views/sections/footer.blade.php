@@ -5,7 +5,7 @@
 
 	$newest = new WP_Query([
 		'posts_per_page' => 1,
-		'post_type' => 'name',
+		'post_type' => 'tnf_name',
 		'orderby' => 'modified',
 		'order' => 'DESC',
 	]);

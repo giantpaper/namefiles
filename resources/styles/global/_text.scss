@@ -1,5 +1,9 @@
+:root {
+	--text-color: #374151;
+}
+
 body {
-	color: #374151;
+	color: var(--text-color);
 	font: text(20) 'nunito-sans',sans-serif;
 }
 

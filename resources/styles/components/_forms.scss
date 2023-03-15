@@ -1,5 +1,7 @@
 form {
 	label {
+		display: flex;
+		gap: 0.25rem;
 		&[for] {
 			cursor: pointer;
 		}
@@ -43,5 +45,8 @@ form {
 			font-family: inherit;
 			border-radius: 0.25rem;
 		}
+	}
+	[type="submit"] {
+		margin: 0 auto;
 	}
 }

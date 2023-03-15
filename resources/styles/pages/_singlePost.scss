@@ -1,0 +1,14 @@
+.wp-block {
+	&-button {
+		&__link {
+			@extend .button;
+			text-decoration: none;
+		}
+	}
+}
+
+.post {
+	> a {
+		display: block;
+	}
+}

@@ -2,7 +2,10 @@
   <a class="brand" href="{{ home_url('/') }}">
     {!! $siteName !!}
   </a>
-	<form class="by_name flex items-center gap-2 py-4 md:py-0">
+	<nav class="text-center lg:text-right w-full px-8 pt-0 pb-2">
+		<a href="/news/">News</a>
+	</nav>
+	<form id="searchform" class="by_name flex items-center gap-2 py-4 md:pt-0 pb-2">
 		<label for="s">Search</label>
 		<input type="search" id="s" name="s" value="" />
 		<button><i class="fa-solid fa-magnifying-glass"></i></button>

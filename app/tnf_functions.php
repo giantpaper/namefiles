@@ -1,5 +1,9 @@
 <?php
 
+include __DIR__.'/cpt/cpt.name.php';
+// include __DIR__.'/cpt/cpt.name_Old.php';
+include __DIR__.'/cpt/cpt.taxonomies.php';
+
 if ( !is_admin() ) {
 
 	function embedded_css($identifier=null, $suffix=null) {
@@ -182,7 +186,7 @@ if ( !is_admin() ) {
 			global $post;
 			$p = get_posts([
 				'posts_per_page' => -1,
-				'post_type' => 'name',
+				'post_type' => 'tnf_name',
 				'exclude' => $post->ID,
 				'tax_query' => [
 					[
@@ -200,7 +204,7 @@ if ( !is_admin() ) {
 		// Don't do this thru API
 		if ( !(defined( 'REST_REQUEST' ) && REST_REQUEST) ) {
 			$name = get_name_by_title($title);
-			if ( $name != null && $name->post_type == 'name' ) {
+			if ( $name != null && $name->post_type == 'tnf_name' ) {
 				$icon = gender_icon($name->ID);
 				$title = $icon['html']. ' ' . $title;
 				$title = '<span class="name-title-inner ' .str_replace(', ', '-', strtolower($icon['name'])). '">' .$title. '</span>';
@@ -221,7 +225,7 @@ if ( !is_admin() ) {
 			}
 			return $name;
 		}, $content);
-		$content = preg_replace("#\[\^([0-9]+)\]#", is_singular('name') ? '<sup class="ref"><a href="#sourcelink_$1">$1</a></sup>' : null, $content);
+		$content = preg_replace("#\[\^([0-9]+)\]#", is_singular('tnf_name') ? '<sup class="ref"><a href="#sourcelink_$1">$1</a></sup>' : null, $content);
 		return $content;
 	};
 	add_filter('acf/load_value/type=text', 'source_links', 20);

@@ -116,7 +116,7 @@ export default function($) {
 		});
 
 		$.ajax({
-			url: `/wp-json/wp/v2/name`,
+			url: `/wp-json/wp/v2/tnf_name`,
 			data: serialize,
 		})
 		.done(function(data) {

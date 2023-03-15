@@ -6,21 +6,35 @@ $terms_altspellings = get_the_terms($post->ID, 'altspelling');
 $terms_origin = get_the_terms($post->ID, 'origin');
 $terms_gender = get_the_terms($post->ID, 'gender');
 
+$terms_nametag = get_the_terms($post->ID, 'nametag');
+
+$genderlist = [];
 $nametypelist = [];
 $originlist = [];
+$nametaglist = [];
+
 foreach ( $terms_nametypes as $term ) {
 	$nametypelist[] = $term->name;
 }
-if ( $terms_origin ) {
+if ( $terms_origin !== false ) {
 	foreach ( $terms_origin as $term ) {
 		$originlist[] = $term->name;
 	}
 }
-if ( $terms_gender ) {
+if ( $terms_nametag !== false ) {
+	foreach ( $terms_nametag as $term ) {
+		$nametaglist[] = [
+			'id' => $term->term_id,
+			'display' => str_replace('-', '', $term->slug)
+		];
+	}
+}
+if ( $terms_gender !== false ) {
 	foreach ( $terms_gender as $term ) {
 		$genderlist[] = $term->name;
 	}
 }
+
 $nametypephrasing = null;
 if ( count($nametypelist) > 1 ) {
 	$nametypephrasing = 'both ';
@@ -71,6 +85,14 @@ if ( $terms_related && $terms_altspellings !== false && count($terms_related) > 
 			@php(the_content())
 		</div>
 	@endif
+
+	@if (count($nametaglist) > 0)
+		<ul class="nametags mx-auto max-w-lg mt-16">
+		@foreach ($nametaglist as $tag)
+			<li class="inline"><a href="{{ get_term_link($tag['id']) }}">#{{ $tag['display'] }}</a></li>
+		@endforeach
+		</ul>
+	@endif
 	@if ($terms_altspellings !== false && count($terms_altspellings) > 0 && !in_array(false, $have_altspellings))
 	<section id="altspellings"><div class="container lazyload" data-animate="fadeInUp">
 		<h2>Alternate Spellings:</h2>
@@ -81,7 +103,7 @@ if ( $terms_related && $terms_altspellings !== false && count($terms_related) > 
 			//	get by 'meaning' child terms
 			$altspellings__meaning = get_posts([
 				'posts_per_page' => -1,
-				'post_type' => 'name',
+				'post_type' => 'tnf_name',
 				'exclude' => $post->ID,
 				'child_of' => 29, // Meaning term
 				'tax_query' => [
@@ -116,6 +138,7 @@ if ( $terms_related && $terms_altspellings !== false && count($terms_related) > 
 		</ul>
 	</div></section>
 	@endif
+
 	@if (!empty($terms_related) && !in_array(false, $have_related_names))
 	<section id="related_names"><div class="container lazyload" data-animate="fadeInUp">
 		<h2>Related Names:</h2>
@@ -126,7 +149,7 @@ if ( $terms_related && $terms_altspellings !== false && count($terms_related) > 
 			//	get by 'meaning' child terms
 			$related_names__meaning = get_posts([
 				'posts_per_page' => -1,
-				'post_type' => 'name',
+				'post_type' => 'tnf_name',
 				'exclude' => $post->ID,
 				'child_of' => 29, // Meaning term
 				'tax_query' => [
@@ -146,13 +169,19 @@ if ( $terms_related && $terms_altspellings !== false && count($terms_related) > 
 				echo '</div>';
 				echo '<ul class="name_cards">';
 				foreach ($related_names__meaning as $name) {
-					$related_gender = get_the_terms($name->ID, 'gender')[0]->term_id;
+					$genders = get_the_terms($name->ID, 'gender');
+					$related_genders = get_the_terms($name->ID, 'gender');
+					foreach($related_genders as $i => $term) {
+						$related_genders[$i] = $term->term_id;
+					}
+					$related_gender = implode(',', $related_genders);
 					$related_meaning = get_field('meaning', $name->ID);
 					$related_pronunciation = get_field('pronunciation', $name->ID);
 					echo '<li><a href="' .get_permalink($name->ID). '"
 						data-gender="' .$related_gender. '"
 						data-meaning="' .$related_meaning. '"
 						data-pronunciation="' .$related_pronunciation. '"
+						data-edit="' .get_edit_post_link($name->ID). '"
 						class="name_card">' .$name->post_title. '</a></li>';
 				}
 				echo '</ul>';

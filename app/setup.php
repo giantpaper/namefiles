@@ -31,9 +31,9 @@ add_action('wp_enqueue_scripts', function () {
 	wp_enqueue_style('typekit', 'https://use.typekit.net/hnp5fhi.css?v=3.2', false, null);
 	bundle('app')->enqueue();
 
-	define('NAME_TITLE', $wp_query->is_singular( 'name' ) ? str_replace('-2', '', $post->post_name) : get_query_var('s') );
+	define('NAME_TITLE', $wp_query->is_singular( 'tnf_name' ) ? str_replace('-2', '', $post->post_name) : get_query_var('s') );
 	// define('SHOW_GRAPH', false);
-	define('SHOW_GRAPH', ( $wp_query->is_singular('name') || $wp_query->is_search() ) && json_decode(file_get_contents( DATA_URL . '/json.php?mode=stats&country=us&which=by_name&slug=' . NAME_TITLE)) != null );
+	define('SHOW_GRAPH', ( $wp_query->is_singular('tnf_name') || $wp_query->is_search() ) && json_decode(file_get_contents( DATA_URL . '/json.php?mode=stats&country=us&which=by_name&slug=' . NAME_TITLE)) != null );
 
 	$localize = [
 		'urls' => [
