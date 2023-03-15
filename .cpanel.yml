@@ -2,4 +2,4 @@
 deployment:
   tasks:
     - export DEPLOYPATH=/home/giantpap/~namefiles.co/2022/web/app/themes
-    - /bin/cp -R tnf_2022 $DEPLOYPATH
+    - cp -R tnf_2022/ $DEPLOYPATH
