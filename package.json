@@ -1,34 +1,24 @@
 {
-  "name": "sage",
+  "name": "tnf_2023",
+  "version": "0.0.0",
   "private": true,
-  "browserslist": [
-    "extends @wordpress/browserslist-config"
-  ],
-  "engines": {
-    "node": ">=16.0.0"
-  },
   "scripts": {
-    "dev": "bud dev",
-    "build": "bud build",
-    "translate": "yarn translate:pot && yarn translate:update",
-    "translate:pot": "wp i18n make-pot . ./resources/lang/sage.pot --include=\"app,resources\"",
-    "translate:update": "for filename in ./resources/lang/*.po; do msgmerge -U $filename ./resources/lang/sage.pot; done; rm -f ./resources/lang/*.po~",
-    "translate:compile": "yarn translate:mo && yarn translate:js",
-    "translate:js": "wp i18n make-json ./resources/lang --pretty-print",
-    "translate:mo": "wp i18n make-mo ./resources/lang ./resources/lang"
-  },
-  "devDependencies": {
-    "@roots/bud": "5.8.7",
-    "@roots/bud-sass": "^5.8.7",
-    "@roots/bud-tailwindcss": "5.8.7",
-    "@roots/sage": "5.8.7",
-    "@tailwindcss/typography": "^0.5.2",
-    "tw-elements": "^1.0.0-alpha12"
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
   },
   "dependencies": {
-    "chart.js": "^3.8.0",
-    "jquery": "^3.6.0",
-    "jquery-ui": "^1.13.1",
-    "jquery-ui-bundle": "^1.12.1-migrate"
+    "vue": "^3.2.47",
+    "vue-router": "^4.1.6"
+  },
+  "devDependencies": {
+    "@tailwindcss/typography": "^0.5.8",
+    "@vitejs/plugin-vue": "^4.0.0",
+    "autoprefixer": "^10.4.13",
+    "node-sass": "^8.0.0",
+    "postcss": "^8.4.19",
+    "sass": "^1.56.1",
+    "tailwindcss": "^3.2.4",
+    "vite": "^4.1.4"
   }
 }

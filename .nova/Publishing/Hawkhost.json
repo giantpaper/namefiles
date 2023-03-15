@@ -1,0 +1,9 @@
+{
+  "identifier" : "BB4F48B1-7217-4C0F-8ECA-0D0018619A98",
+  "ignoredFilePatterns" : [
+    "node_modules"
+  ],
+  "remotePath" : "\/home\/giantpap\/~namefiles.co\/2023",
+  "server" : "Hawkhost",
+  "usesPublishing" : true
+}

@@ -1,0 +1,27 @@
+@import 'base';
+
+@media (hover: hover) {
+  a:hover {
+    background-color: hsla(160, 100%, 37%, 0.2);
+  }
+}
+html,
+body {
+  height: 100%;
+}
+body {
+  &:not(.hide_menu) {
+    overflow: hidden;
+  }
+}
+#app {
+  min-height: 100%;
+}
+.button,
+button,
+form [type="submit"] {
+  color: currentcolor;
+  font-size: .75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
