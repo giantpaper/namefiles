@@ -1,5 +1,5 @@
 ---
 deployment:
   tasks:
-    - export DEPLOYPATH=/home/giantpap/~namefiles.co
+    - export DEPLOYPATH=/home/giantpap/~namefiles.co/2023
     - cp -R . $DEPLOYPATH
